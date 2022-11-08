@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="task_add_new">New task</string>
+    <string name="show_subtitle">Show Subtitle</string>
+    <string name="hide_subtitle">Hide Subtitle</string>
+    <string name="subtitle_format">%1$d tasks</string>
+    <string name="app_name">PS4</string>
+    <string name="name_hint">Enter a task name</string>
+    <string name="name_label">Task name</string>
+    <string name="details_label">Details</string>
+    <string name="done_label">Done</string>
+</resources>

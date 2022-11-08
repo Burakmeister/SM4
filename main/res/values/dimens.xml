@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="task_item_padding">10dp</dimen>
+    <dimen name="icon_and_checkbox_padding">20dp</dimen>
+    <dimen name="task_layout_height"> 100dp</dimen>
+</resources>
