@@ -20,12 +20,14 @@
 
         <TextView
             android:id="@+id/task_item_name"
-            style = "@style/GreenText"/>
+            style = "@style/GreenText"
+            android:ellipsize="end"/>
 
         <TextView
             android:id="@+id/task_item_date"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="12dp"/>
 
     </LinearLayout>
 

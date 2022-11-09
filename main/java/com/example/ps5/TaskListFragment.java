@@ -1,6 +1,7 @@
 package com.example.ps5;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -141,7 +142,7 @@ public class TaskListFragment extends Fragment {
             icon = itemView.findViewById(R.id.icon_image);
         }
 
-        public void blind(Task task){
+        public void bind(Task task){
             this.task = task;
             nameTextView.setText(task.getName());
             dateTextView.setText(task.getDate().toString());
@@ -149,6 +150,11 @@ public class TaskListFragment extends Fragment {
                 icon.setImageResource(R.drawable.ic_house);
             }else{
                 icon.setImageResource(R.drawable.ic_studies);
+            }
+            if (task.isDone()) {
+                nameTextView.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            } else {
+                nameTextView.setPaintFlags(Paint.LINEAR_TEXT_FLAG);
             }
         }
 
@@ -162,6 +168,7 @@ public class TaskListFragment extends Fragment {
         public CheckBox getCheckBox(){
             return this.checkBox;
         }
+        public TextView getNameTextView(){return this.nameTextView;}
     }
 
         private class TaskAdapter extends RecyclerView.Adapter<TaskHolder>{
@@ -182,10 +189,18 @@ public class TaskListFragment extends Fragment {
             public void onBindViewHolder(@NonNull TaskHolder holder, int position) {
                 Task task = tasks.get(position);
                 CheckBox checkBox = holder.getCheckBox();
+                TextView nameTextView = holder.getNameTextView();
                 checkBox.setChecked(tasks.get(position).isDone());
-                checkBox.setOnCheckedChangeListener((buttonView, isChecked)->
-                        tasks.get(holder.getBindingAdapterPosition()).setDone(isChecked));
-                holder.blind(task);
+                checkBox.setOnCheckedChangeListener((buttonView, isChecked)->{
+                        tasks.get(holder.getBindingAdapterPosition()).setDone(isChecked);
+                        if (task.isDone()) {
+                            nameTextView.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+                        } else {
+                            nameTextView.setPaintFlags(Paint.LINEAR_TEXT_FLAG);
+                        }
+                        updateSubtitle();
+                });
+                holder.bind(task);
             }
 
             @Override
